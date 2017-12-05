@@ -40,5 +40,28 @@ export default{
     		success:success,
     		reason:reason
     	}
+    },
+    getThisMonthDay: function(year, month) {
+        var d = new Date();
+        // var y = d.getFullYear();
+        // var m = d.getMonth();
+        // var d = d.getDate();
+        // what day is first day
+        d.setFullYear(year, month-1, 1);
+        //这个年月的第一天是星期几
+        var w1 = d.getDay();
+        //有w1+1个空白
+        var days = new Date(year,month,0).getDate();
+        var ds = w1;
+        var arr=[];
+        //加入空白
+        for(let i = 0 ; i < ds ; i++){
+            arr.push("");
+        }
+        //加入日期
+        for(let i = 1 ; i <= days ; i++){
+            arr.push(d.getFullYear()+"/"+(d.getMonth())+"/"+i);
+        }
+        return arr;
     }
 }
