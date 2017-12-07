@@ -1,5 +1,5 @@
 <template>
-    <div class="warning-container" v-if='showWarn'>
+    <div class="warning-container">
         <div class="warning-body" :class='[contWarn]'>
             <div class="warning-font">
                 <div class="font-tp">{{warningFonts}}</div>
@@ -29,27 +29,52 @@
                 showWarn:this.showWarning
             }
         },
-        props:['showWarning','type','btnFt','warnFonts','link','click'],
+        props:['type','btnFt','warnFonts','link','showWarning',],
         mounted:function(){
-            if(this.tp=='success'){
-                this.contWarn.push('warning-success');
-                this.btnWarn.push('success-btn');
-            }else if(this.tp=='warning'){
-                this.contWarn.push('warning-warn');
-                this.btnWarn.push('warn-btn');
-            }else if(this.tp=='faild'){
-                this.contWarn.push('warning-faild');
-                this.btnWarn.push('faild-btn');
-            }
+            this.init();
         },
         methods:{
+            init:function(){
+                if(this.tp=='success'){
+                    this.contWarn.push('warning-success');
+                    this.btnWarn.push('success-btn');
+                }else if(this.tp=='warning'){
+                    this.contWarn.push('warning-warn');
+                    this.btnWarn.push('warn-btn');
+                }else if(this.tp=='faild'){
+                    this.contWarn.push('warning-faild');
+                    this.btnWarn.push('faild-btn');
+                }
+            },
             cgShowType:function(){
 
             },
             closeWarn:function(){
                 this.showWarn = !this.showWarn;
+                this.$emit("ifshow",false);
             }
         },
+        watch:{
+            showWarning:function(newVal,oldVal){
+                this.showWarn = newVal;
+            },
+            btnFt:function(newVal,oldVal){
+                this.btnFonts=newVal;  
+            },
+            type:function(newVal,oldVal){
+                this.tp = newVal;
+                this.init();
+            },
+            warnFonts:function(newVal,oldVal){
+                this.warningFonts=newVal;
+            },
+            link:function(newVal,oldVal){
+                this.linkWarning=newVal;
+            },
+            showWarning:function(newVal,oldVal){
+                this.showWarn = newVal;
+            }
+        }
     }
 </script>
 <style type="text/css">
@@ -72,6 +97,15 @@
         z-index: 10000;
         left: 0;
         top: 0;
+        opacity:0;
+        animation:showWarn 0.4s ease-out 0s forwards;
+    }
+    @keyframes showWarn{
+        from{
+            opacity: 0;
+        }to{
+            opacity: 1;
+        }
     }
     .warning-body{
         width: 30%;

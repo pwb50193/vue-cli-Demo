@@ -1,6 +1,6 @@
 <template>
 	<input :size="size" :type="type" :name="name" :class="[cls]" :disabled="disabled" 
-	placeholder="placeholder" :value="value" :borderRadius="borderRadius" @change='changeInp'/>
+	v-bind:placeholder="placeholder1" :value="value" :borderRadius="borderRadius" @change='changeInp'/>
 </template>
 <script>
 	import util from '../util';
@@ -12,7 +12,8 @@
 		},
 		data(){
 			return {
-				value:this._props.values
+				value:this._props.values,
+				placeholder1:this._props.placeholder
 			}
 		},
 		props:{

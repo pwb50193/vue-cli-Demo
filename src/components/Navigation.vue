@@ -36,12 +36,13 @@
 <style type="text/css">
 	*{
 		box-sizing: border-box;
-		color: white;
+		
 	}
 	.navi-container{
 		width: 100%;
 		height: 100%;
 		display: flex;
+		color: white;
 	}
 	.navi-horziontal{
 		justify-content: space-around;

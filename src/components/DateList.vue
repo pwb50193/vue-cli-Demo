@@ -28,7 +28,7 @@
 	</div>
 </template>
 <script type="text/javascript">
-	import util from "./util"
+	import util from "../util"
 	export default{
 		components:{
 			util

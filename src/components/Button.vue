@@ -47,6 +47,7 @@
 		border:1px solid #A9A9A9;
 		background:#D3D3D3;
 		outline:none;
+		min-width:70px;
 	}
 	.default-btn:active{
 		transform: scale(0.9);
