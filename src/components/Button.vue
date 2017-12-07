@@ -1,12 +1,12 @@
 <template>
-	<button :disabled='disabled' :class="[cls]">{{message}}</button>
+	<button :disabled='disabled' :class="[cls]" @click='clickHandle'>{{message}}</button>
 </template>
 <script>
 	export default {
-		methods:{
-			clickMethod:function(event){
-				console.log(event);
-			}
+		methods: {
+    		clickHandle: function(evt) {
+      			this.$emit("click", evt);
+	    	}
 		},
 		data(){
 			return {

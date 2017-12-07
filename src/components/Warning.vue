@@ -1,12 +1,13 @@
 <template>
-    <div class="warning-container" v-if='showWarning'>
+    <div class="warning-container" v-if='showWarn'>
         <div class="warning-body" :class='[contWarn]'>
             <div class="warning-font">
                 <div class="font-tp">{{warningFonts}}</div>
                 <a class='warning-a' v-bind:href="linkWarning" v-if='linkWarning'>{{linkWarning}}点击跳转</a>
             </div>
             <div class="warning-btn">
-                <btn size='small-btn' class='btn-align' :class='[btnWarn]' :showFont='btnFonts'></btn>
+                <btn size='small-btn' class='btn-align' :class='[btnWarn]' 
+                :showFont='btnFonts' @click='closeWarn'></btn>
             </div>
         </div>
     </div>
@@ -24,10 +25,11 @@
                 tp:this.type,
                 btnFonts:this.btnFt,
                 warningFonts:this.warnFonts,
-                linkWarning:this.link
+                linkWarning:this.link,
+                showWarn:this.showWarning
             }
         },
-        props:['showWarning','type','btnFt','warnFonts','link'],
+        props:['showWarning','type','btnFt','warnFonts','link','click'],
         mounted:function(){
             if(this.tp=='success'){
                 this.contWarn.push('warning-success');
@@ -43,8 +45,11 @@
         methods:{
             cgShowType:function(){
 
+            },
+            closeWarn:function(){
+                this.showWarn = !this.showWarn;
             }
-        }
+        },
     }
 </script>
 <style type="text/css">
