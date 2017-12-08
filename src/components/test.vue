@@ -3,7 +3,7 @@
         <div id="header">
             <div class="logo">个人相关网站</div>
             <div style="width:70%;height:100%;">
-                <navigation :published='pub' :list='li'></navigation>
+                <navigation :published='pub' :list='li' @click='jump'></navigation>
             </div>
         </div>
         <div class="normal">
@@ -48,6 +48,13 @@
         <!-- <warn :cgtp='cgType'></warn> -->
         <warn @ifshow="warnclose" :showWarning='show' :type='tp' :btnFt='btnFont'
          :warnFonts='warning' :link='gotoSomeWhere' v-if='show'></warn>
+         <div class="normal" style="justify-content:center">
+            <div style="width:60%;height:30px;" v-if='jindu'>
+                <prog :schdule='size' :time='timeout' @barOver='overFun'></prog>
+            </div>
+            <btn size="large-btn" :class='[btnWarn]' :showFont='btnFont1'
+                @click='again' style='margin-left:10px;'></btn>
+         </div>
     </div>
     
 </template>
@@ -59,12 +66,19 @@
     import selectPl from './Select';
     import warn from './warning';
     import watch from './Watch';
+    import prog from './ProgressBar';
     export default{
         components:{
-            watch,btn,datePl,inputPl,navigation,selectPl,warn
+            watch,btn,datePl,inputPl,navigation,selectPl,warn,prog
         },
         data(){
             return {
+                size:0,
+                setinterval:'',
+                timeout:200,
+                btnFont1:'再来一遍',
+                jindu:true,
+
                 s1:'请输入电话号码',
                 s2:'请输入email',
                 s3:'请输入数字',
@@ -82,10 +96,13 @@
                 li:{
 
                     "首页":"",
-                    "个人简介":["简历","介绍"],
-                    "vue-cli Demo":['按钮','下拉框','输入框','时间控件','导航','提示框','日期插件','进度条'],
-                    "特效 Demo":['轮播图','数字滚动','抽奖轮盘','进度条','按钮'],
-                    "原生js":['继承','原型链','作用域链','闭包','']
+                    "个人简介":[["简历","http://www.baidu.com"],["介绍","#"]],
+                    "vue-cli Demo":[['按钮', ['#']],['下拉框', ['#']],['输入框', ['#']],['时间控件', ['#']],
+                                    ['导航', ['#']],['提示框', ['#']],['日期插件', ['#']],['进度条', ['#']]],
+                    "特效 Demo":[ [ '轮播图', [ '#' ] ],[ '数字滚动', [ '#' ] ],[ '抽奖轮盘', [ '#' ] ],
+                                [ '进度条', [ '#' ] ],[ '按钮', [ '#' ] ] ],
+                    "原生js":[ [ '继承', [ '#' ] ],[ '原型链', [ '#' ] ],[ '作用域链', [ '#' ] ],
+                            [ '闭包', [ '#' ] ] ]
                 },
                 btnFonts:'确认',
                 btnWarn:['success-btn'],
@@ -93,7 +110,25 @@
                 btnWarn2:['faild-btn'],
             }
         },
+        mounted:function(){
+            this.init();
+        },
         methods:{
+            init:function(){
+                var se = this;
+                this.setinterval = setInterval(addsize,se.timeout);
+                function addsize(){
+                    se.size=se.size+2;
+                }
+            },
+            again:function(){
+                clearInterval(this.setinterval);
+                this.size=0;
+                setTimeout(this.init,500);
+            },
+            jump:function(link){
+                window.location.href=link;
+            },
             showWarn:function(param){
                 if(param.className.indexOf("warn-btn")!=-1){
                     this.tp='warning';
@@ -113,6 +148,9 @@
             },
             warnclose:function(){
                 this.show=false;
+            },
+            overFun:function(){
+                clearInterval(this.setinterval);
             }
         }
     }
@@ -131,6 +169,7 @@
         height: 40px;
         display: flex;
         justify-content: space-around;
+        align-items: center;
     }
     .db{
         width: 100%;
