@@ -17,17 +17,23 @@
         props:['schdule','time'],
         watch:{
             schdule:function(newVal,oldVal){
+                var selfs = this;
+                
+                this.schWidth = newVal;
+                // this.schVal = newVal+"%";
+                setTimeout(cgSchVal,500);
+                function  cgSchVal(){
+                    selfs.schVal = newVal;
+                }
                 if(newVal>=100){
                     this.$emit('barOver','finished');
-                    var selfs = this;
-                    setTimeout(cgval,selfs.time);
+                    
+                    setTimeout(cgval,1000);
                     function cgval(){
                         selfs.schVal = "完成";
                         selfs.fontColor='#7FFF00';
                     }
                 }
-                this.schWidth = newVal;
-                this.schVal = newVal+"%";      
             }
         }
     }
