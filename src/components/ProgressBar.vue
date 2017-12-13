@@ -1,4 +1,4 @@
-<template>
+    <template>
     <div class="progress-container">
         <div class="progress-schdule" v-bind:style='{width:schWidth+"%"}'>
             <div class="progress-val" v-if="schWidth>30" :style='{color:fontColor}'>{{schVal}}</div>

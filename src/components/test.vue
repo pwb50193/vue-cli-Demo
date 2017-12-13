@@ -84,8 +84,8 @@
                 s3:'请输入数字',
                 s4:'请输入日期',
                 
-                type:"12",
-                type1:'24',
+                type:12,
+                type1:24,
                 pub:"horizontal",
                 radius:true,
                 tp:'',

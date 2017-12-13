@@ -6,8 +6,9 @@ export default{
     	if(type == "text"){
     		success=true;//如需验证可按照需求进行设置
     	}else if(type == "email"){
-    		reg = /^[A-Za-zd]+([-_.][A-Za-zd]+)*@([A-Za-zd]+[-.])+[A-Za-zd]{2,5}$/;
-    		if (reg.test(value)) {
+    		reg = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
+            var reg1 = /^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
+    		if (reg.test(value)||reg1.test(value)) {
     			success=true;
             } else {
                 reason="请输入正确邮箱格式！";
@@ -17,7 +18,7 @@ export default{
     	}else if(type == "tel"){
     		reg = /^(1[3-9]{1}\d{9})$/
         	if (reg.test(value)) {
-          		success==true;
+          		success=    true;
         	} else {
           		reason="请输入正确电话号码！";
         	}
@@ -29,12 +30,7 @@ export default{
     			reason="请输入正确日期格式！";
     		}
     	}else if(type == "number"){
-    		reg = /^\d{n}$/;
-			if(reg.test(value)){
-				success = true;
-			}else{
-				reason="请输入正确数字格式";
-			}
+    		success=true;
     	}
     	return {
     		success:success,

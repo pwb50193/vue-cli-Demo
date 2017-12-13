@@ -48,6 +48,11 @@
 		background:#D3D3D3;
 		outline:none;
 		min-width:70px;
+		box-shadow:2px 2px 2px black;
+		transition: background 0.2s;
+	}
+	.default-btn:hover{
+
 	}
 	.default-btn:active{
 		transform: scale(0.9);
@@ -74,12 +79,21 @@
 		background: #B4EEB4;
 		border:1px solid #8FBC8F;
 	}
+	.success-btn:hover{
+		background:#BCEE68;
+	}
 	.warn-btn{
 		background: #EEC591;
 		border:1px solid #EE9A49;
 	}
+	.warn-btn:hover{
+		background: #EEB422;
+	}
 	.faild-btn{
 		background: #EE7600;
 		border:1px solid #DC143C;
+	}
+	.faild-btn:hover{
+		background:#EE4000;
 	}
 </style>
